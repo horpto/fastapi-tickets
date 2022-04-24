@@ -4,3 +4,6 @@ build-image:
 
 up: build-image	
 	docker-compose up -d
+
+exec:
+	docker exec -it tickets-api bash

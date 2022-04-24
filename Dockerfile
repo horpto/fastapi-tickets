@@ -4,7 +4,11 @@ EXPOSE 8080
 
 COPY requirements.txt .
 
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN apt update \
+    && apt install -y gcc \
+    && pip3 install --no-cache-dir -r requirements.txt \
+    && apt purge -y gcc \
+    && apt clean -y && apt autoremove -y
 
 ADD . /opt/tickets
 
