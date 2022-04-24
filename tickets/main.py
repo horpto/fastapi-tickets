@@ -1,6 +1,5 @@
 from functools import partial
 
-import aioredis
 import sentry_sdk
 import uvicorn
 from fastapi import FastAPI
@@ -8,15 +7,16 @@ from sentry_sdk.integrations.asgi import SentryAsgiMiddleware
 
 from config import set_logging_config, settings
 from endpoints import router
+from storage import RedisStorage
 
 
 async def startup(app):
-    redis = aioredis.from_url(settings.redis_dsn)
-    app.state.redis_pool = redis
+    storage = await RedisStorage.create_storage(settings.redis_dsn)
+    app.state.storage = storage
 
 
 async def shutdown(app):
-    await app.state.redis.redis_pool.disconnect()
+    await app.state.storage.close()
 
 
 def get_app():
