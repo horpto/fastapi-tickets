@@ -10,7 +10,8 @@ RUN apt update \
     && apt purge -y gcc \
     && apt clean -y && apt autoremove -y
 
-ADD . /opt/tickets
+COPY fixtures /opt/tickets/fixtures/
+COPY tickets /opt/tickets/
 
 WORKDIR /opt/tickets/
 

@@ -5,7 +5,6 @@ volumes:
 
 services:
   devtickets: &devtickets
-    restart: unless-stopped
     build: .
     image: tickets
     ports:
@@ -23,6 +22,7 @@ services:
 
   tickets-api:
     <<: *devtickets
+    restart: unless-stopped
     container_name: tickets-api
     hostname: tickets-api
 
