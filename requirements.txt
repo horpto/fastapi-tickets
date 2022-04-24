@@ -1,0 +1,5 @@
+aioredis==2.0.1
+fastapi==0.75.2
+pydantic==1.9.0
+ujson==5.2.0
+uvicorn[standard]==0.17.6
