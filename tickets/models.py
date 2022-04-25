@@ -38,7 +38,10 @@ class FlightPricesModel(FlightModel):
     pet_price: Decimal
     seats_num: PositiveInt
     currency: Currency
-    storage = Field("file", exclude=True)
+    storage: Storage = Field("storage", exclude=True)
+
+    class Config:
+        arbitrary_types_allowed = True
 
     @classmethod
     async def from_storage(cls, storage: Storage, flight: FlightModel):

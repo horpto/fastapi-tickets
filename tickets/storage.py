@@ -1,3 +1,5 @@
+import pickle
+
 import aioredis
 
 
@@ -26,7 +28,9 @@ class RedisStorage(Storage):
         await self.redis.close()
 
     async def get_by_key(self, key):
-        return await self.redis.get(key)
+        value = await self.redis.get(key)
+        return pickle.loads(value)
 
     async def set_by_key(self, key, value):
+        value = pickle.dumps(value)
         await self.redis.set(key, value)
