@@ -2,6 +2,8 @@ from decimal import Decimal
 from locale import currency
 from math import ceil
 
+from numpy import full
+
 from models import CostModel, FlightPricesModel, PassengerModel
 
 
@@ -13,9 +15,11 @@ class TicketCost:
         self._current_cost = Decimal(0)
 
     def add_passenger(self, passenger: PassengerModel):
-        self._current_cost += self._ticket_cost(passenger)
-        self._current_cost += self._baggage_cost(passenger)
-        self._current_cost += self._pets_cost(passenger)
+        full_cost = self._ticket_cost(passenger)
+        full_cost += self._baggage_cost(passenger)
+        full_cost += self._pets_cost(passenger)
+
+        self._current_cost += full_cost
 
     def _ticket_cost(self, passenger: PassengerModel):
         if passenger.age >= 18:
