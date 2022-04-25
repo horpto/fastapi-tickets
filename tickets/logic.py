@@ -1,5 +1,6 @@
 from decimal import Decimal
 from locale import currency
+from math import ceil
 
 from models import CostModel, FlightPricesModel, PassengerModel
 
@@ -28,7 +29,9 @@ class TicketCost:
             return 0
         if passenger.baggage_weight <= self.MAX_FREE_BAGGAGE_WEIGHT:
             return 0
-        return (passenger.baggage_weight - self.MAX_FREE_BAGGAGE_WEIGHT) * self.flight_prices.baggage_price
+        weight_diff = passenger.baggage_weight - self.MAX_FREE_BAGGAGE_WEIGHT
+        min_weight = self.flight_prices.baggage_weight
+        return ceil(weight_diff / min_weight) * self.flight_prices.baggage_price
 
     def _pets_cost(self, passenger: PassengerModel):
         if passenger.pets_num:

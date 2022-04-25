@@ -14,9 +14,9 @@ class PassengerModel(BaseModel):
 
 
 class Cities(str, Enum):
-    kaliningrad = "Калининград"
-    moscow = "Москва"
-    petersburg = "Санкт-Петербург"
+    kaliningrad = "kaliningrad"
+    moscow = "moscow"
+    petersburg = "petersburg"
 
 
 class Currency(str, Enum):
@@ -34,6 +34,7 @@ class FlightPricesModel(FlightModel):
     teenager_cost: Decimal
     child_cost: Decimal
     baggage_price: Decimal
+    baggage_weight: PositiveInt = 5
     pet_price: Decimal
     seats_num: PositiveInt
     currency: Currency
