@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 
 from dependencies import get_storage
-from logic import TicketCost
+from logic import TicketCostCalculator
 from models import CostModel, FlightModel, FlightPricesModel, PassengerModel
 from storage import Storage
 
@@ -28,7 +28,7 @@ async def ticket_price(
 
     flight_prices: FlightPricesModel = await FlightPricesModel.from_storage(storage, flight)
 
-    ticket_cost = TicketCost(flight_prices)
+    ticket_cost = TicketCostCalculator(flight_prices)
     for passenger in passengers:
         ticket_cost.add_passenger(passenger)
     return ticket_cost.current_cost

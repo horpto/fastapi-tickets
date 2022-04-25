@@ -7,7 +7,7 @@ from numpy import full
 from models import CostModel, FlightPricesModel, PassengerModel
 
 
-class TicketCost:
+class TicketCostCalculator:
     MAX_FREE_BAGGAGE_WEIGHT = 20
 
     def __init__(self, flight_prices: FlightPricesModel):
