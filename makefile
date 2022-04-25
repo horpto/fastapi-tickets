@@ -10,3 +10,12 @@ logs:
 
 exec:
 	docker exec -it tickets-api bash
+
+lint:
+	black tickets
+	isort tickets
+
+check-lint:
+	black --check tickets
+	isort --check tickets
+

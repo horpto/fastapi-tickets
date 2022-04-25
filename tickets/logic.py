@@ -1,7 +1,7 @@
 from decimal import Decimal
 from locale import currency
 
-from models import FlightPricesModel, PassengerModel, CostModel
+from models import CostModel, FlightPricesModel, PassengerModel
 
 
 class TicketCost:
@@ -10,7 +10,7 @@ class TicketCost:
     def __init__(self, flight_prices: FlightPricesModel):
         self.flight_prices = flight_prices
         self._current_cost = Decimal(0)
-    
+
     def add_passenger(self, passenger: PassengerModel):
         self._current_cost += self._ticket_cost(passenger)
         self._current_cost += self._baggage_cost(passenger)

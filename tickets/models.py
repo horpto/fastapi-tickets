@@ -1,10 +1,11 @@
 import datetime
 from decimal import Decimal
-
 from enum import Enum
+
 from pydantic import BaseModel, Field, PositiveInt
 
 from storage import Storage
+
 
 class PassengerModel(BaseModel):
     age: PositiveInt
@@ -19,7 +20,7 @@ class Cities(str, Enum):
 
 
 class Currency(str, Enum):
-    rub = 'RUB'
+    rub = "RUB"
 
 
 class FlightModel(BaseModel):
@@ -36,16 +37,16 @@ class FlightPricesModel(FlightModel):
     pet_price: Decimal
     seats_num: PositiveInt
     currency: Currency
-    storage = Field('file', exclude=True)
+    storage = Field("file", exclude=True)
 
     @classmethod
     async def from_storage(cls, storage: Storage, flight: FlightModel):
-        key = f'flight_{flight.src}_{flight.dst}_{flight.time}'
+        key = f"flight_{flight.src}_{flight.dst}_{flight.time}"
         value = await storage.get_by_key(key)
         return cls(storage=storage, **value)
 
     async def save(self):
-        key = f'flight_{self.src}_{self.dst}_{self.time}'
+        key = f"flight_{self.src}_{self.dst}_{self.time}"
         value = self.dict()
         await self.storage.set_by_key(key, value)
 
@@ -53,4 +54,3 @@ class FlightPricesModel(FlightModel):
 class CostModel(BaseModel):
     cost: Decimal
     cost_currency: Currency
-
