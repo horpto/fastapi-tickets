@@ -1,0 +1,64 @@
+-
+  src: kaliningrad
+  dst: petersburg
+  time: "10:30"
+  currency: "RUB"
+  adult_cost: 1500
+  teenager_cost: 850
+  child_cost: 200
+  baggage_price: 100
+  baggage_weight: 5
+  pet_price: 500
+  seats_num: 450
+
+- 
+  src: kaliningrad
+  dst: petersburg
+  time: "13:00"
+  currency: "RUB"
+  adult_cost: 2000
+  teenager_cost: 850
+  child_cost: 200
+  baggage_price: 100
+  baggage_weight: 5
+  pet_price: 600
+  seats_num: 580
+
+- 
+  src: kaliningrad
+  dst: petersburg
+  time: "21:15"
+  currency: "RUB"
+  adult_cost: 3000
+  teenager_cost: 900
+  child_cost: 350
+  baggage_price: 75
+  baggage_weight: 5
+  pet_price: 300
+  seats_num: 200
+
+-
+  src: kaliningrad
+  dst: moscow
+  time: "08:20"
+  currency: "RUB"
+  adult_cost: 3500
+  teenager_cost: 1850
+  child_cost: 550
+  baggage_price: 170
+  baggage_weight: 5
+  pet_price: 500
+  seats_num: 580
+
+-
+  src: kaliningrad
+  dst: moscow
+  time: "23:15"
+  currency: "RUB"
+  adult_cost: 2000
+  teenager_cost: 700
+  child_cost: 350
+  baggage_price: 100
+  baggage_weight: 5
+  pet_price: 300
+  seats_num: 580

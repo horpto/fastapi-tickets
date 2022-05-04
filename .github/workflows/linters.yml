@@ -1,0 +1,9 @@
+name: Linter src
+on: [push,pull_request]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: pip3 install -r requirements_dev.txt
+      - run: make lint

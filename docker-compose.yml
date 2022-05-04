@@ -1,0 +1,43 @@
+version: '3.8'
+
+volumes:
+  redis-data:
+
+services:
+  devtickets: &devtickets
+    build: .
+    image: tickets
+    ports:
+      - 8080:8080
+    volumes:
+      - ./tickets:/opt/tickets/tickets
+      - ./fixtures:/opt/tickets/fixtures
+      - type: tmpfs
+        target: /tmp
+    env_file:
+      - local.env
+    links:
+      - tickets-redis
+    networks:
+      - redis-net
+
+  tickets-api:
+    <<: *devtickets
+    restart: unless-stopped
+    container_name: tickets-api
+    hostname: tickets-api
+
+  tickets-redis:
+    container_name: tickets-redis
+    restart: always
+    image: redis:6-alpine
+    command: redis-server --requirepass btqoqyctnoyrp
+    ports:
+      - 6379:6379
+    networks:
+      - redis-net
+    volumes:
+      - redis-data:/data
+
+networks:
+  redis-net:
